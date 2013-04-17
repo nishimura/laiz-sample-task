@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {include:include/head.html}
+  </head>
+  <body>
+    {include:include/header.html}
+
+    <div class="container">
+      <h1>{action}</h1>
+
+      <div class="row">
+        <form action="" method="POST" class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">ID</label>
+            <div class="controls">
+              <label>
+                <span class="ifel:task.taskId">
+                  <input type="text" class="input-medium" value="{task.taskId}" disabled="disabled">
+                  <input type="hidden" name="task[taskId]" value="{task.taskId}">
+                </span>
+                <span class="else:">
+                  <input type="text" class="input-medium else:" value="Create New Task" disabled="disabled">
+                </span>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="name">User</label>
+            <div class="controls">
+              <input type="text" class="input-medium" placeholder="Name" name="task[userName]" id="name" value="{task.userName}" required>
+              <span class="help-inline validator-error if:errorTaskUserName">{errorTaskUserName}</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="subject">Subject</label>
+            <div class="controls">
+              <input type="text" class="input-medium" placeholder="Subject" name="task[subject]" id="subject" value="{task.subject}">
+              <span class="help-inline validator-error if:errorTaskSubject">{errorTaskSubject}</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="body">Body</label>
+            <div class="controls">
+              <textarea placeholder="Subject" name="task[body]" id="body">{task.body}</textarea>
+              <span class="help-inline validator-error if:errorTaskBody">{errorTaskBody}</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="confirmBox">Confirm</label>
+            <div class="controls">
+              <input type="checkbox" name="check" id="confirmBox" class="ifel:check" checked></input>
+              <input type="checkbox" name="check" id="confirmBox" class="else:"></input>
+              <span class="help-inline validator-error if:errorCheck">{errorCheck}</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <input type="hidden" name="transaction[check]" value="{transaction.token}">
+              <div class="help-inline validator-error if:errorTransactionCheck">
+                {errorTransactionCheck}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{action}</button>
+
+            <button class="btn btn-danger pull-right if:task.taskId" onclick="if (confirm('Delete this item.')) deleteForm.submit(); return false;">Delete</button>
+          </div>
+          <input type="hidden" name="trigger" value="1">
+
+        </form>
+
+        <form id="deleteForm" action="task_delete.html" class="form-inline pull-right if:task.taskId" method="POST" onsubmit="">
+          <input type="hidden" name="trigger" value="1">
+          <input type="hidden" name="task[taskId]" value="{task.taskId}">
+        </form>
+      </div>
+
+      <div class="row">
+        <a class="btn" href="/task_info.html?task[taskId]={task.taskId}">Back</a>
+      </div>
+
+      {include:include/footer.html}
+    </div>
+
+    {include:include/foot.html}
+    <script>
+      // error
+      $('.validator-error').each(function(i, tag){
+        $(tag).closest('.control-group').addClass('error');
+      });
+    </script>
+  </body>
+</html>

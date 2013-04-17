@@ -1,0 +1,16 @@
+{
+  "name": "laiz/laiz-sample-task",
+  "description": "Sample Application of Laiz Web Framework",
+  "keywords": ["framework"],
+  "license": "MIT",
+
+  "autoload": {
+    "psr-0": {"Laiz\\Sample\\Task": "src"}
+  },
+  "require": {
+    "zendframework/zend-math": "*",
+    "laiz/laiz-session": "0.1.0",
+    "laiz/laiz-db": "1.0.0",
+    "laiz/laiz-framework": "2.0.0-alpha1"
+  }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {include:include/head.html}
+  </head>
+  <body>
+    {include:include/header.html}
+
+    <div class="container">
+      <h1>Information</h1>
+
+      <div>
+        <h2>
+          Assigned Variables and types.
+        </h2>
+      </div>
+      <div>
+        <div>
+          <h3>Assigned variables to the page and global response</h3>
+          <pre>{showText} {otherText}</pre>
+        </div>
+        <div>
+          <h3>Type hinting injection</h3>
+          <p>varStdClass:</p>
+          <pre>{varStdClass}</pre>
+        </div>
+        <div>
+          <h3>@var annotation: type converter</h3>
+          <p>
+            <span>varId:</span>
+            <pre>{varId}</pre>
+          </p>
+          <p>
+            <span>varFlag:</span>
+            <pre>{varFlag}</pre>
+          </p>
+          <p>
+            <span>varObj:</span>
+            <pre>{varObj}</pre>
+          </p>
+          <p>
+            <span>varModel:</span>
+            <pre>{varModel}</pre>
+          </p>
+        </div>
+        <div>
+          <h3>@Converter annotation: variable filter</h3>
+          <p>
+            <pre>{varPlainText}</pre>
+          </p>
+        </div>
+      </div>
+      <div>
+        <a href="?plainText=+Plain+Text+&id=3&flag=true&model[name]=+my+name+&model[value]=+My+Value+">Send Request</a>
+      </div>
+
+      {include:include/footer.html}
+    </div>
+
+    {include:include/foot.html}
+  </body>
+</html>

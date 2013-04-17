@@ -1,0 +1,7 @@
+vendor/
+cache/*
+log/*
+composer.lock
+*.tmp
+*~
+*.swp

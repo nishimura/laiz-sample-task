@@ -9,8 +9,8 @@
   },
   "require": {
     "zendframework/zend-math": "*",
-    "laiz/laiz-session": "0.1.0",
-    "laiz/laiz-db": "1.0.0",
-    "laiz/laiz-framework": "2.0.0-alpha1"
+    "laiz/laiz-session": "0.1.1",
+    "laiz/laiz-db": "1.0.1",
+    "laiz/laiz-framework": "2.0.0-alpha3"
   }
 }

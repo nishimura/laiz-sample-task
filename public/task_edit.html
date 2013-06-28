@@ -15,11 +15,11 @@
             <label class="control-label">ID</label>
             <div class="controls">
               <label>
-                <span class="ifel:task.taskId">
+                <span laiz:ifel="task.taskId">
                   <input type="text" class="input-medium" value="{task.taskId}" disabled="disabled">
                   <input type="hidden" name="task[taskId]" value="{task.taskId}">
                 </span>
-                <span class="else:">
+                <span laiz:else>
                   <input type="text" class="input-medium else:" value="Create New Task" disabled="disabled">
                 </span>
               </label>
@@ -29,36 +29,35 @@
             <label class="control-label" for="name">User</label>
             <div class="controls">
               <input type="text" class="input-medium" placeholder="Name" name="task[userName]" id="name" value="{task.userName}" required>
-              <span class="help-inline validator-error if:errorTaskUserName">{errorTaskUserName}</span>
+              <span class="help-inline validator-error" laiz:if="errorTaskUserName">{errorTaskUserName}</span>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="subject">Subject</label>
             <div class="controls">
               <input type="text" class="input-medium" placeholder="Subject" name="task[subject]" id="subject" value="{task.subject}">
-              <span class="help-inline validator-error if:errorTaskSubject">{errorTaskSubject}</span>
+              <span class="help-inline validator-error" laiz:if="errorTaskSubject">{errorTaskSubject}</span>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="body">Body</label>
             <div class="controls">
               <textarea placeholder="Subject" name="task[body]" id="body">{task.body}</textarea>
-              <span class="help-inline validator-error if:errorTaskBody">{errorTaskBody}</span>
+              <span class="help-inline validator-error" laiz:if="errorTaskBody">{errorTaskBody}</span>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label" for="confirmBox">Confirm</label>
             <div class="controls">
-              <input type="checkbox" name="check" id="confirmBox" class="ifel:check" checked></input>
-              <input type="checkbox" name="check" id="confirmBox" class="else:"></input>
-              <span class="help-inline validator-error if:errorCheck">{errorCheck}</span>
+              <input type="checkbox" name="check" id="confirmBox" value="true" laiz:form></input>
+              <span class="help-inline validator-error" laiz:if="errorCheck">{errorCheck}</span>
             </div>
           </div>
           <div class="control-group">
             <div class="controls">
               <input type="hidden" name="transaction[check]" value="{transaction.token}">
-              <div class="help-inline validator-error if:errorTransactionCheck">
+              <div class="help-inline validator-error" laiz:if="errorTransactionCheck">
                 {errorTransactionCheck}
               </div>
             </div>
@@ -67,13 +66,13 @@
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">{action}</button>
 
-            <button class="btn btn-danger pull-right if:task.taskId" onclick="if (confirm('Delete this item.')) deleteForm.submit(); return false;">Delete</button>
+            <button class="btn btn-danger pull-right" laiz:if="task.taskId" onclick="if (confirm('Delete this item.')) deleteForm.submit(); return false;">Delete</button>
           </div>
           <input type="hidden" name="trigger" value="1">
 
         </form>
 
-        <form id="deleteForm" action="task_delete.html" class="form-inline pull-right if:task.taskId" method="POST" onsubmit="">
+        <form id="deleteForm" action="task_delete.html" class="form-inline pull-right" laiz:if="task.taskId" method="POST" onsubmit="">
           <input type="hidden" name="trigger" value="1">
           <input type="hidden" name="task[taskId]" value="{task.taskId}">
         </form>

@@ -9,7 +9,7 @@
           <a class="brand" href="/">Task App</a>
 
           <div class="nav-collapse collapse" id="main-menu">
-            <ul class="nav if:LOGGED_IN">
+            <ul class="nav" laiz:if="LOGGED_IN">
               <li class="{active.index}">
                 <a href="/">Home</a>
               </li>
@@ -33,11 +33,11 @@
               </li>
             </ul>
 
-            <form class="navbar-form pull-right ifel:LOGGED_IN" action="/session_delete.html">
+            <form class="navbar-form pull-right" action="/session_delete.html" laiz:ifel="LOGGED_IN">
               <button type="submit" class="btn">Logout</button>
             </form>
 
-            <form class="navbar-form pull-right else:" action="/session_add.html" method="POST">
+            <form class="navbar-form pull-right" action="/session_add.html" method="POST" laiz:else>
               <input name="id" class="span2" type="text" placeholder="ID">
               <input name="password" class="span2" type="password" placeholder="Password">
               <button type="submit" class="btn">Login</button>
@@ -54,9 +54,9 @@
     -->
 
     <div class="container">
-      <div class="alert alert-{alert.alertType} loop:MESSAGES:alert">
+      <div class="alert alert-{alert.alertType}" laiz:loop="MESSAGES:alert">
         <a class="close" data-dismiss="alert">×</a>
-        <strong style="if:alert.alertTypeText">{alert.alertTypeText}:</strong>
+        <strong laiz:if="alert.alertTypeText">{alert.alertTypeText}:</strong>
         {alert.message}
       </div>
     </div>

@@ -6,8 +6,8 @@ Laiz Framework Application Sample.
 
     composer.phar create-project laiz/laiz-sample-task laiz-sample-task
     cd laiz-sample-task
-    mkdir logs cache
-    chmod o+w logs cache
+    mkdir cache
+    chmod o+w cache
 
 ## Apache Virtual Host Configuration
 
@@ -39,18 +39,6 @@ Laiz Framework Application Sample.
 Access to localhost. Login id is `user1` and password is `my-password`.
 Thereis in config/develop_auth.ini file.
 
-
-## Note
-
-### Bug of zend-stdlib
-
-    Unknown error: Polyfill autoload support (file library/Zend/Stdlib/compatibility/autoload.php) is no longer necessary;
-    please remove your require statement referencing this file
-
-Fixed: https://github.com/zendframework/Component_ZendStdlib/commit/acc746acf5e277e89f1ad527901f2fff8754aaab
-
-
-    sed -i 's/require $vendorDir.*zend-stdlib.*//' vendor/composer/autoload_real.php
 
 ## Change Authentication Adapter to Db
 

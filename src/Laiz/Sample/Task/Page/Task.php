@@ -56,29 +56,33 @@ class Task
     public function add(Db $db, AuthenticationService $auth, $valid = null)
     {
         $this->action = "Create New Task";
-        $this->editInternal($db, $auth, $valid, 'Task was created.');
+        if ($valid === null)
+            $this->task->userName = $auth->getIdentity();
+
+        $this->editInternal($db, $valid, 'Task was created.');
         return 'task_edit.html';
     }
-    public function edit(Db $db, AuthenticationService $auth, $valid = null)
+    public function edit(Db $db, $valid = null)
     {
         $this->action = "Edit the Task";
         if ($valid === true)
             $this->task->updatedAt = date('Y-m-d H:i:s');
-        $this->editInternal($db, $auth, $valid, 'Task was edited.');
+
+        $this->editInternal($db, $valid, 'Task was edited.');
     }
-    private function editInternal($db, $auth, $valid, $msg)
+    private function editInternal($db, $valid, $msg)
     {
-        if ($valid === null){
-            $this->task->userName = $auth->getIdentity();
-        }else if ($valid === true){
-            try {
-                $db->save($this->task);
-                throw new RedirectMessageException('/task_info.html?task[taskId]=' . $this->task->taskId,
-                                                   $msg,
-                                                   Message::SUCCESS);
-            }catch (Exception $e){
-                Message::add($e->getMessage(), Message::ERROR);
-            }
+        if ($valid !== true)
+            return;
+
+        try {
+            $db->save($this->task);
+            throw new RedirectMessageException('/task_info.html?task[taskId]='
+                                               . $this->task->taskId,
+                                               $msg,
+                                               Message::SUCCESS);
+        }catch (Exception $e){
+            Message::add($e->getMessage(), Message::ERROR);
         }
     }
     public function delete(Db $db)

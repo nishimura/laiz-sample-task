@@ -11,6 +11,8 @@ use Laiz\Session\Exception\RedirectMessageException;
 use Laiz\Core\Annotation\Validator;
 use Zend\Authentication\AuthenticationService;
 use Laiz\Session\TransactionToken;
+use Laiz\Request\Exception\RedirectException;
+
 use Laiz\Sample\Task\ViewModel\Pager;
 
 class Task
@@ -50,7 +52,9 @@ class Task
 
     public function info()
     {
-        // nothing
+        if (!$this->task->taskId)
+            // task_edit.html => push back button
+            throw new RedirectException('/task.html');
     }
 
     public function add(Db $db, AuthenticationService $auth, $valid = null)

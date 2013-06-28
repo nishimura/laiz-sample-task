@@ -3,7 +3,6 @@
 namespace Laiz\Sample\Task\Page;
 
 use Laiz\Db\Db;
-use Laiz\Db\Pager;
 use Laiz\Db\Vo;
 use Laiz\Db\Vo\Task as Vo_Task;
 use Laiz\Db\Exception;
@@ -12,6 +11,7 @@ use Laiz\Session\Exception\RedirectMessageException;
 use Laiz\Core\Annotation\Validator;
 use Zend\Authentication\AuthenticationService;
 use Laiz\Session\TransactionToken;
+use Laiz\Sample\Task\ViewModel\Pager;
 
 class Task
 {

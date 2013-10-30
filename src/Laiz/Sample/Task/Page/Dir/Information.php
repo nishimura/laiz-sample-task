@@ -5,6 +5,8 @@ namespace Laiz\Sample\Task\Page\Dir;
 use Laiz\Sample\Task\Model\MyModel;
 use Laiz\Core\Annotation\Converter;
 use Laiz\Sample\Task\Converter\PlusLengthConverter;
+use Laiz\Sample\Task\Dto\DataShared;
+use Laiz\Sample\Task\Dto\DataPrototype;
 
 /**
  */
@@ -25,6 +27,24 @@ class Information
      * @var stdClass
      */
     public $obj;
+
+    /**
+     * @var DataShared
+     */
+    public $shared1;
+    /**
+     * @var DataShared
+     */
+    public $shared2;
+
+    /**
+     * @var DataPrototype
+     */
+    public $proto1;
+    /**
+     * @var DataPrototype
+     */
+    public $proto2;
 
     public $showText;
 
@@ -47,5 +67,8 @@ class Information
 
         $this->showText = 'Hello';
         $this->model->assignValue('otherText', 'World!');
+
+        $this->shared = var_export($this->shared1 === $this->shared2, 1);
+        $this->proto  = var_export($this->proto1 === $this->proto2, 1);
     }
 }

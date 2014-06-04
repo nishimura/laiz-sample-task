@@ -2,8 +2,7 @@
 
 namespace Laiz\Sample\Task\Filter;
 
-use Zend\Stdlib\RequestInterface as Request;
-use Laiz\Core\Action;
+use Zend\Http\PhpEnvironment\Request;
 
 class Menu
 {
@@ -13,8 +12,15 @@ class Menu
     {
         $this->config = parse_ini_file($iniFile);
     }
-    public function display(Action $action)
+
+    public function accept()
     {
+        return true;
+    }
+
+    public function postFilter()
+    {
+        $request = new Request();
         $this->active = new \stdClass();
         $menus = array();
         foreach ($this->config as $k => $v){
@@ -27,8 +33,8 @@ class Menu
         }
 
 
-        $pageName = $action->getPageName();
-        $active = str_replace('/', '_', ltrim($pageName, '/'));
+        $actionName = $request->getUri()->getPath();
+        $active = str_replace('/', '_', ltrim($actionName, '/'));
         if (!isset($menus[$active]))
             return;
 

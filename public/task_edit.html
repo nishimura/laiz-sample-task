@@ -29,14 +29,14 @@
             <label class="control-label" for="name">User</label>
             <div class="controls">
               <input type="text" class="input-medium" placeholder="Name" name="task[userName]" id="name" value="{task.userName}" required>
-              <span class="help-inline validator-error" laiz:if="errorTaskUserName">{errorTaskUserName}</span>
+              <span class="help-inline validator-error" laiz:if="errors.task.userName">{errors.task.userName}</span>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="subject">Subject</label>
             <div class="controls">
               <input type="text" class="input-medium" placeholder="Subject" name="task[subject]" id="subject" value="{task.subject}">
-              <span class="help-inline validator-error" laiz:if="errorTaskSubject">{errorTaskSubject}</span>
+              <span class="help-inline validator-error" laiz:if="errors.task.subject">{errors.task.subject}</span>
             </div>
           </div>
           <div class="control-group">
@@ -51,15 +51,7 @@
             <label class="control-label" for="confirmBox">Confirm</label>
             <div class="controls">
               <input type="checkbox" name="check" id="confirmBox" value="true" laiz:form></input>
-              <span class="help-inline validator-error" laiz:if="errorCheck">{errorCheck}</span>
-            </div>
-          </div>
-          <div class="control-group">
-            <div class="controls">
-              <input type="hidden" name="transaction[check]" value="{transaction.token}">
-              <div class="help-inline validator-error" laiz:if="errorTransactionCheck">
-                {errorTransactionCheck}
-              </div>
+              <span class="help-inline validator-error" laiz:if="errors.check">{errors.check}</span>
             </div>
           </div>
 

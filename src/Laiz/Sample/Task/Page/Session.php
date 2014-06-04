@@ -20,6 +20,8 @@ class Session
     {
 
         $result = $auth->login($this->id, $this->password);
+        // DB
+        //$result = $auth->login($this->id, md5($this->password));
         if ($result->isValid())
             $auth->resumeUri('/');
         else

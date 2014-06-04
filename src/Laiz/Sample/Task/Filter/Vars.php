@@ -7,10 +7,15 @@ use Zend\Authentication\AuthenticationService;
 
 class Vars
 {
+    public function accept($path)
+    {
+        return true;
+    }
+
     /** @var int */
     public $LOGGED_IN;
     public $MESSAGES;
-    public function filter(AuthenticationService $auth)
+    public function preFilter(AuthenticationService $auth)
     {
         $this->MESSAGES = array();
         $messages = Message::removeMessages();

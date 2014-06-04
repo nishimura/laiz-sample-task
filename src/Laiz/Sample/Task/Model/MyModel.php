@@ -2,20 +2,16 @@
 
 namespace Laiz\Sample\Task\Model;
 
-use Laiz\Core\Response;
-
 class MyModel
 {
-    private $response;
     public $name;
     public $value;
-    public function __construct(Response $response)
+    public function __construct()
     {
-        $this->response = $response;
     }
 
-    public function assignValue($name, $value)
+    public function assignValue($value)
     {
-        $this->response->$name = $value;
+        $this->value = $value;
     }
 }

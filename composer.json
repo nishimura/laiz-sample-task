@@ -8,7 +8,8 @@
     "psr-0": {"Laiz\\Sample\\Task": "src"}
   },
   "require": {
+    "zendframework/zend-eventmanager": "2.*",
     "laiz/laiz-session": "0.1.2",
-    "laiz/laiz-framework": "dev-alpha5"
+    "laiz/laiz-framework": "2.0.0-alpha5"
   }
 }

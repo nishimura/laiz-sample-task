@@ -33,8 +33,12 @@ class Menu
         }
 
 
-        $actionName = $request->getUri()->getPath();
-        $active = str_replace('/', '_', ltrim($actionName, '/'));
+        $path = $request->getUri()->getPath();
+        $path = ltrim($path, '/');
+        $path = str_replace('.html', '', $path);
+        if (!$path)
+            $path = 'index';
+        $active = str_replace('/', '_', $path);
         if (!isset($menus[$active]))
             return;
 
